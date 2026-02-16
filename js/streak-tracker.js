@@ -6,6 +6,26 @@ class StreakTracker {
         this.data = this.loadStreakData();
     }
 
+    // 靜態 init 方法，供 app.js 呼叫
+    static init() {
+        const instance = new StreakTracker();
+        const container = document.getElementById('streak-section');
+        
+        if (container) {
+            container.innerHTML = instance.renderStyles() + instance.render();
+        }
+        
+        // 監聽新增 entry 事件
+        window.addEventListener('entryAdded', () => {
+            instance.recordActivity();
+            if (container) {
+                container.innerHTML = instance.renderStyles() + instance.render();
+            }
+        });
+        
+        return instance;
+    }
+
     getStorageKey() {
         return this.storageKey;
     }
