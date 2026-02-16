@@ -76,6 +76,18 @@ const Store = {
         );
     },
 
+    getEntriesByDateRange(from, to) {
+        const data = this.getData();
+        const fromDate = new Date(from);
+        fromDate.setHours(0, 0, 0, 0);
+        const toDate = new Date(to);
+        toDate.setHours(23, 59, 59, 999);
+        return data.entries.filter(e => {
+            const entryDate = new Date(e.createdAt);
+            return entryDate >= fromDate && entryDate <= toDate;
+        });
+    },
+
     getTags() {
         const customTags = this.getData().tags || [];
         return [...DEFAULT_TAGS, ...customTags];
