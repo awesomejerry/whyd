@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHYD - What Have You Done</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>WHYD</h1>
+        <p class="tagline">What Have You Done</p>
+    </header>
+
+    <main class="app-main">
+        <!-- Section: Core Input -->
+        <section id="input-section" class="section">
+            <!-- core-input.js will populate this -->
+        </section>
+
+        <!-- Section: Timeline View -->
+        <section id="timeline-section" class="section">
+            <!-- timeline-view.js will populate this -->
+        </section>
+
+        <!-- Section: Tags Filter -->
+        <section id="tags-section" class="section">
+            <!-- tag-system.js will populate this -->
+        </section>
+
+        <!-- Section: Statistics -->
+        <section id="stats-section" class="section hidden">
+            <!-- statistics.js will populate this -->
+        </section>
+
+        <!-- Section: Daily Summary -->
+        <section id="summary-section" class="section hidden">
+            <!-- daily-summary.js will populate this -->
+        </section>
+
+        <!-- Section: Streak Tracker -->
+        <section id="streak-section" class="section">
+            <!-- streak-tracker.js will populate this -->
+        </section>
+    </main>
+
+    <!-- Onboarding Overlay -->
+    <div id="onboarding-overlay" class="overlay hidden">
+        <!-- onboarding.js will populate this -->
+    </div>
+
+    <!-- Export Modal -->
+    <div id="export-modal" class="modal hidden">
+        <!-- export-feature.js will populate this -->
+    </div>
+
+    <footer class="app-footer">
+        <button id="btn-export" class="btn-icon" title="匯出">📤</button>
+        <button id="btn-stats" class="btn-icon" title="統計">📊</button>
+        <button id="btn-summary" class="btn-icon" title="每日回顧">🌙</button>
+    </footer>
+
+    <!-- App State & Utilities (loaded first) -->
+    <script src="js/store.js"></script>
+    <script src="js/utils.js"></script>
+
+    <!-- Feature Modules (loaded in order) -->
+    <script src="js/core-input.js"></script>
+    <script src="js/tag-system.js"></script>
+    <script src="js/timeline-view.js"></script>
+    <script src="js/streak-tracker.js"></script>
+    <!-- TODO: Future modules
+    <script src="js/statistics.js"></script>
+    <script src="js/daily-summary.js"></script>
+    <script src="js/export-feature.js"></script>
+    <script src="js/onboarding.js"></script>
+    -->
+
+    <!-- App Initialization -->
+    <script src="js/app.js"></script>
+</body>
+</html>
