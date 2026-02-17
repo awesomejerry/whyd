@@ -13,6 +13,7 @@ const App = {
         // 初始化各模組
         if (typeof CoreInput !== 'undefined') CoreInput.init();
         if (typeof TagSystem !== 'undefined') TagSystem.init();
+        if (typeof Search !== 'undefined') Search.init();
         if (typeof TimelineView !== 'undefined') TimelineView.init();
         if (typeof EditDelete !== 'undefined') EditDelete.init();
         if (typeof StreakTracker !== 'undefined') StreakTracker.init();

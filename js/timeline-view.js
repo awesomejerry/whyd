@@ -2,6 +2,7 @@
 
 const TimelineView = {
     filterTags: [],
+    searchQuery: '',
 
     init() {
         this.render();
@@ -22,6 +23,11 @@ const TimelineView = {
     bindEvents() {
         window.addEventListener('tag-selected', (e) => {
             this.filterTags = e.detail.selectedTags;
+            this.renderEntries();
+        });
+
+        window.addEventListener('search-filtered', (e) => {
+            this.searchQuery = e.detail.query || '';
             this.renderEntries();
         });
 
@@ -48,6 +54,13 @@ const TimelineView = {
             );
         }
 
+        if (this.searchQuery) {
+            const query = this.searchQuery.toLowerCase();
+            entries = entries.filter(entry => 
+                entry.text && entry.text.toLowerCase().includes(query)
+            );
+        }
+
         return entries;
     },
 
@@ -59,12 +72,16 @@ const TimelineView = {
         const allTags = Store.getTags();
 
         if (entries.length === 0) {
+            let emptyMessage = '開始記錄你完成的事吧！';
+            if (this.searchQuery) {
+                emptyMessage = '沒有符合搜尋條件的記錄';
+            } else if (this.filterTags.length > 0) {
+                emptyMessage = '沒有符合條件的記錄';
+            }
             timeline.innerHTML = `
                 <div class="timeline-empty">
                     <div class="timeline-empty-icon">📝</div>
-                    <div class="timeline-empty-text">
-                        ${this.filterTags.length > 0 ? '沒有符合條件的記錄' : '開始記錄你完成的事吧！'}
-                    </div>
+                    <div class="timeline-empty-text">${emptyMessage}</div>
                 </div>
             `;
             return;
