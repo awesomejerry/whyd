@@ -72,6 +72,11 @@ const App = {
             section.classList.remove('hidden');
             section.classList.add('hidden-by-toggle');
             section.scrollIntoView({ behavior: 'smooth' });
+
+            // 重新繪製圖表（確保 canvas 尺寸正確）
+            if (sectionId === 'stats-section' && typeof Statistics !== 'undefined') {
+                setTimeout(() => Statistics.redrawCharts(), 100);
+            }
         } else {
             section.classList.add('hidden');
             section.classList.remove('hidden-by-toggle');
