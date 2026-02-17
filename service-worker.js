@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const CACHE_NAME = `whyd-cache-${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [
@@ -14,11 +14,15 @@ const STATIC_ASSETS = [
   './js/core-input.js',
   './js/tag-system.js',
   './js/timeline-view.js',
+  './js/edit-delete.js',
   './js/streak-tracker.js',
   './js/daily-summary.js',
   './js/statistics.js',
   './js/export-feature.js',
-  './js/onboarding.js'
+  './js/onboarding.js',
+  './js/search.js',
+  './js/theme.js',
+  './js/shortcuts.js'
 ];
 
 self.addEventListener('install', (event) => {
