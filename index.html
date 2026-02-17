@@ -67,6 +67,47 @@
         <!-- export-feature.js will populate this -->
     </div>
 
+    <!-- Shortcuts Help Modal -->
+    <div id="shortcuts-modal" class="modal hidden">
+        <div class="modal-content shortcuts-modal-content">
+            <div class="modal-header">
+                <h2>⌨️ 快捷鍵</h2>
+                <button class="modal-close" onclick="Shortcuts.hideHelp()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="shortcuts-list">
+                    <div class="shortcut-item">
+                        <kbd class="shortcut-key">Ctrl/Cmd</kbd><span class="shortcut-plus">+</span><kbd class="shortcut-key">N</kbd>
+                        <span class="shortcut-desc">聚焦輸入框</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd class="shortcut-key">Ctrl/Cmd</kbd><span class="shortcut-plus">+</span><kbd class="shortcut-key">/</kbd>
+                        <span class="shortcut-desc">顯示快捷鍵幫助</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd class="shortcut-key">?</kbd>
+                        <span class="shortcut-desc">顯示快捷鍵幫助</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd class="shortcut-key">Esc</kbd>
+                        <span class="shortcut-desc">取消當前操作</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd class="shortcut-key">Ctrl/Cmd</kbd><span class="shortcut-plus">+</span><kbd class="shortcut-key">E</kbd>
+                        <span class="shortcut-desc">匯出資料</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd class="shortcut-key">Ctrl/Cmd</kbd><span class="shortcut-plus">+</span><kbd class="shortcut-key">S</kbd>
+                        <span class="shortcut-desc">統計資料</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shortcut Flash Feedback -->
+    <div id="shortcut-flash" class="shortcut-flash"></div>
+
     <footer class="app-footer">
         <button id="btn-theme" class="btn-icon" title="切換淺色主題">☀️</button>
         <button id="btn-export" class="btn-icon" title="匯出">📤</button>
@@ -90,6 +131,7 @@
     <script src="js/statistics.js"></script>
     <script src="js/export-feature.js"></script>
     <script src="js/onboarding.js"></script>
+    <script src="js/shortcuts.js"></script>
 
     <!-- App Initialization -->
     <script src="js/app.js"></script>
