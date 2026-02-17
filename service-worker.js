@@ -2,23 +2,23 @@ const CACHE_VERSION = 'v1';
 const CACHE_NAME = `whyd-cache-${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/favicon.svg',
-  '/styles/main.css',
-  '/styles/onboarding.css',
-  '/js/store.js',
-  '/js/utils.js',
-  '/js/app.js',
-  '/js/core-input.js',
-  '/js/tag-system.js',
-  '/js/timeline-view.js',
-  '/js/streak-tracker.js',
-  '/js/daily-summary.js',
-  '/js/statistics.js',
-  '/js/export-feature.js',
-  '/js/onboarding.js'
+  './',
+  './index.html',
+  './manifest.json',
+  './favicon.svg',
+  './styles/main.css',
+  './styles/onboarding.css',
+  './js/store.js',
+  './js/utils.js',
+  './js/app.js',
+  './js/core-input.js',
+  './js/tag-system.js',
+  './js/timeline-view.js',
+  './js/streak-tracker.js',
+  './js/daily-summary.js',
+  './js/statistics.js',
+  './js/export-feature.js',
+  './js/onboarding.js'
 ];
 
 self.addEventListener('install', (event) => {
