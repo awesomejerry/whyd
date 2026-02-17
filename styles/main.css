@@ -1532,6 +1532,74 @@ body {
     background: #dc2626;
 }
 
+/* Shortcuts Modal */
+.shortcuts-modal-content {
+    max-width: 400px;
+}
+
+.shortcuts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.shortcut-item:last-child {
+    border-bottom: none;
+}
+
+.shortcut-key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 28px;
+    padding: 0 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+    color: var(--text);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.shortcut-plus {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.shortcut-desc {
+    margin-left: auto;
+    color: var(--text);
+    font-size: 0.875rem;
+}
+
+/* Shortcut Flash Effect */
+.shortcut-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--primary);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.15s ease;
+}
+
+.shortcut-flash.shortcut-flash-active {
+    opacity: 0.1;
+}
+
 /* Mobile Responsive for Edit/Delete */
 @media (max-width: 480px) {
     .timeline-actions {

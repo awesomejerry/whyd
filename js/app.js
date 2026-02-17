@@ -19,6 +19,7 @@ const App = {
         if (typeof Statistics !== 'undefined') Statistics.init();
         if (typeof DailySummary !== 'undefined') DailySummary.init();
         if (typeof ExportFeature !== 'undefined') ExportFeature.init();
+        if (typeof Shortcuts !== 'undefined') Shortcuts.init();
 
         // 綁定底部按鈕
         this.bindFooterButtons();
