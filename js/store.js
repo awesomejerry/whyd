@@ -146,6 +146,40 @@ const Store = {
 
     isOnboarded() {
         return this.getData().settings.onboarded;
+    },
+
+    updateEntry(id, data) {
+        const storedData = this.getData();
+        const entryIndex = storedData.entries.findIndex(e => e.id === id);
+        
+        if (entryIndex === -1) {
+            return null;
+        }
+        
+        const entry = storedData.entries[entryIndex];
+        
+        if (data.text !== undefined) {
+            entry.text = data.text;
+        }
+        if (data.tags !== undefined) {
+            entry.tags = data.tags;
+        }
+        
+        this.saveData(storedData);
+        return entry;
+    },
+
+    deleteEntry(id) {
+        const data = this.getData();
+        const entryIndex = data.entries.findIndex(e => e.id === id);
+        
+        if (entryIndex === -1) {
+            return null;
+        }
+        
+        const deletedEntry = data.entries.splice(entryIndex, 1)[0];
+        this.saveData(data);
+        return deletedEntry;
     }
 };
 

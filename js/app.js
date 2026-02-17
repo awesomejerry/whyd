@@ -14,6 +14,7 @@ const App = {
         if (typeof CoreInput !== 'undefined') CoreInput.init();
         if (typeof TagSystem !== 'undefined') TagSystem.init();
         if (typeof TimelineView !== 'undefined') TimelineView.init();
+        if (typeof EditDelete !== 'undefined') EditDelete.init();
         if (typeof StreakTracker !== 'undefined') StreakTracker.init();
         if (typeof Statistics !== 'undefined') Statistics.init();
         if (typeof DailySummary !== 'undefined') DailySummary.init();

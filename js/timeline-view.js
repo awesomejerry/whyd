@@ -28,6 +28,14 @@ const TimelineView = {
         window.addEventListener('entry-added', () => {
             this.renderEntries();
         });
+
+        window.addEventListener('entry-updated', () => {
+            this.renderEntries();
+        });
+
+        window.addEventListener('entry-deleted', () => {
+            this.renderEntries();
+        });
     },
 
     getFilteredEntries() {
@@ -67,6 +75,12 @@ const TimelineView = {
                 .map(tagId => allTags.find(t => t.id === tagId))
                 .filter(Boolean);
 
+            const isEditing = window.EditDelete && EditDelete.isEditing(entry.id);
+
+            if (isEditing) {
+                return this.renderEditMode(entry, allTags, entryTags);
+            }
+
             const tagsHtml = entryTags.length > 0 ? `
                 <div class="timeline-tags">
                     ${entryTags.map(tag => `
@@ -76,9 +90,13 @@ const TimelineView = {
             ` : '';
 
             return `
-                <div class="timeline-item">
+                <div class="timeline-item" data-entry-id="${entry.id}">
                     <div class="timeline-marker"></div>
                     <div class="timeline-card">
+                        <div class="timeline-actions">
+                            <button class="edit-btn" title="編輯">✏️</button>
+                            <button class="delete-btn" title="刪除">🗑️</button>
+                        </div>
                         <div class="timeline-time">${Utils.formatTime(entry.createdAt)}</div>
                         <div class="timeline-content">${this.escapeHtml(entry.text)}</div>
                         ${tagsHtml}
@@ -86,6 +104,36 @@ const TimelineView = {
                 </div>
             `;
         }).join('');
+    },
+
+    renderEditMode(entry, allTags, entryTags) {
+        const currentTagIds = entryTags.map(t => t.id);
+        
+        return `
+            <div class="timeline-item" data-entry-id="${entry.id}">
+                <div class="timeline-marker"></div>
+                <div class="timeline-card timeline-card-editing">
+                    <div class="edit-form">
+                        <textarea class="edit-text-input" placeholder="輸入內容...">${this.escapeHtml(entry.text)}</textarea>
+                        <div class="edit-tags">
+                            ${allTags.map(tag => `
+                                <span class="tag-pill tag-pill-edit ${currentTagIds.includes(tag.id) ? 'selected' : ''}" 
+                                      data-tag-id="${tag.id}"
+                                      style="--tag-color: ${tag.color}">
+                                    <span class="tag-dot" style="background: ${tag.color}"></span>
+                                    ${tag.name}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <div class="edit-error hidden"></div>
+                        <div class="edit-actions">
+                            <button class="btn btn-secondary edit-cancel-btn">取消</button>
+                            <button class="btn btn-primary edit-save-btn">儲存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     },
 
     escapeHtml(text) {
