@@ -77,6 +77,11 @@ const App = {
             if (sectionId === 'stats-section' && typeof Statistics !== 'undefined') {
                 setTimeout(() => Statistics.redrawCharts(), 100);
             }
+
+            // 重新渲染每日回顧
+            if (sectionId === 'summary-section' && typeof DailySummary !== 'undefined') {
+                setTimeout(() => DailySummary.render(), 100);
+            }
         } else {
             section.classList.add('hidden');
             section.classList.remove('hidden-by-toggle');

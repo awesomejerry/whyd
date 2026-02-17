@@ -195,7 +195,7 @@ const Statistics = {
 
         const centerX = width / 2 - 50;
         const centerY = height / 2;
-        const radius = Math.min(centerX, centerY) - 10;
+        const radius = Math.max(10, Math.min(centerX, centerY) - 10);
         let startAngle = -Math.PI / 2;
 
         const tags = Store.getTags();
