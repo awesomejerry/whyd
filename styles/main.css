@@ -1877,4 +1877,4 @@ body {
 .import-notification-error {
     background: var(--danger);
     color: white;
-}
+}.hidden { display: none !important; }
