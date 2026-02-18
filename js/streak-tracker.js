@@ -160,9 +160,9 @@ class StreakTracker {
                     align-items: center;
                     gap: 16px;
                     padding: 12px 16px;
-                    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                    background: var(--surface);
                     border-radius: 12px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid var(--border);
                 }
 
                 .streak-current {
@@ -244,12 +244,12 @@ class StreakTracker {
                 .streak-count {
                     font-size: 28px;
                     font-weight: 700;
-                    color: #fff;
+                    color: var(--text);
                 }
 
                 .streak-label {
                     font-size: 14px;
-                    color: rgba(255, 255, 255, 0.7);
+                    color: var(--text-muted);
                 }
 
                 .streak-best {
@@ -257,12 +257,12 @@ class StreakTracker {
                     align-items: center;
                     gap: 6px;
                     padding-left: 16px;
-                    border-left: 1px solid rgba(255, 255, 255, 0.2);
+                    border-left: 1px solid var(--border);
                 }
 
                 .streak-best-label {
                     font-size: 12px;
-                    color: rgba(255, 255, 255, 0.5);
+                    color: var(--text-muted);
                 }
 
                 .streak-best-count {
@@ -273,7 +273,7 @@ class StreakTracker {
 
                 .streak-best-unit {
                     font-size: 12px;
-                    color: rgba(255, 255, 255, 0.5);
+                    color: var(--text-muted);
                 }
             </style>
         `;
