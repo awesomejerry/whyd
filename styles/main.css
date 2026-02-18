@@ -93,12 +93,17 @@ body {
 
 /* Sticky Input Area */
 .sticky-input-area {
+    position: relative;
+}
+
+#tags-section {
     position: sticky;
-    top: 5.5rem;
+    top: 6.5rem;
     z-index: 100;
-    background: var(--bg);
-    padding: 0.5rem 0;
-    margin: -0.5rem 0 1rem 0;
+}
+
+#tags-section .tags-container {
+    background: var(--surface);
 }
 
 .tags-sticky {
