@@ -1,7 +1,7 @@
 // App.js - WHYD 應用程式入口
 // 負責初始化所有模組和協調功能
 
-const WHYD_VERSION = 'v1.0.0';
+const WHYD_VERSION = 'v1.0.1';
 
 const App = {
     init() {
