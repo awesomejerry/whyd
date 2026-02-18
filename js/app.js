@@ -1,9 +1,11 @@
 // App.js - WHYD 應用程式入口
 // 負責初始化所有模組和協調功能
 
+const WHYD_VERSION = 'v1.0.0';
+
 const App = {
     init() {
-        console.log('🚀 WHYD 初始化中...');
+        console.log(`🚀 WHYD ${WHYD_VERSION} 初始化中...`);
 
         // 檢查是否需要引導
         if (typeof Onboarding !== 'undefined' && !Store.isOnboarded()) {
@@ -28,7 +30,13 @@ const App = {
         // 更新連續天數
         Store.updateStreak();
 
-        console.log('✅ WHYD 初始化完成');
+        // 顯示版本號
+        const versionEl = document.getElementById('footer-version');
+        if (versionEl) {
+            versionEl.textContent = WHYD_VERSION;
+        }
+
+        console.log(`✅ WHYD ${WHYD_VERSION} 初始化完成`);
     },
 
     bindFooterButtons() {

@@ -8,14 +8,23 @@
 
 記錄每天的成就，建立正向循環，累積成就感。
 
-## 核心功能
+## 功能列表
 
-- **快速輸入** — 一鍵記錄完成的事
-- **時間軸視覺化** — 看一天的成就流
-- **標籤分類** — 工作/生活/學習/健康
-- **每日回顧** — 晚上總結今天做了什麼
-- **統計圖表** — 週/月成就分析
-- **連續記錄** — 追蹤使用天數
+| 功能 | 描述 | 狀態 |
+|------|------|------|
+| 快速輸入 | 一鍵記錄完成的事 | ✅ |
+| 時間軸視覺化 | 看一天的成就流 | ✅ |
+| 標籤分類 | 工作/生活/學習/健康，自訂標籤 | ✅ |
+| 每日摘要 | 晚上總結今天做了什麼 | ✅ |
+| 統計圖表 | 週/月成就分析 (折線圖、圓餅圖、長條圖) | ✅ |
+| 連續記錄 | 追蹤使用天數 streak | ✅ |
+| 匯出功能 | JSON/CSV 匯出，可選日期範圍 | ✅ |
+| 引導流程 | 3 步驟新用戶引導 | ✅ |
+| PWA 支援 | 可加入主畫面，離線可用 | ✅ |
+| 編輯/刪除 | 編輯已記錄的事項 | ✅ |
+| 搜尋功能 | 即時搜尋過濾 | ✅ |
+| 主題切換 | 深色/淺色主題 | ✅ |
+| 快捷鍵 | Ctrl+N, Ctrl+/, Ctrl+E 等 | ✅ |
 
 ## 設計原則
 
@@ -28,20 +37,18 @@
 
 - 原生 HTML + CSS + JavaScript
 - LocalStorage（離線優先）
-- PWA（可選，加入主畫面）
+- PWA（Service Worker）
+- Canvas（統計圖表）
 
-## OpenSpec 開發計畫
+## 版本號
 
-| Change | 內容 | 狀態 |
-|--------|------|------|
-| `core-input` | 輸入框 + 本地儲存 | ⬜ |
-| `timeline-view` | 時間軸顯示 | ⬜ |
-| `tag-system` | 標籤分類 + 篩選 | ⬜ |
-| `daily-summary` | 每日回顧頁面 | ⬜ |
-| `statistics` | 週/月統計圖表 | ⬜ |
-| `streak-tracker` | 連續天數追蹤 | ⬜ |
-| `export-feature` | 匯出功能 | ⬜ |
-| `onboarding` | 引導新用戶 | ⬜ |
+版本號格式：`vMAJOR.MINOR.PATCH`
+
+- **MAJOR** - 重大架構變更
+- **MINOR** - 新功能
+- **PATCH** - Bug 修復
+
+查看版本：開啟 Console 或在頁面底部查看
 
 ## 目標用戶
 
@@ -54,6 +61,38 @@
 - 心理學研究：正向強化比負面壓力更有效
 - 「Done list」vs「To-do list」的概念
 - 生產力不是靠壓力，是靠動力
+
+## 專案結構
+
+```
+whyd/
+├── index.html
+├── manifest.json
+├── service-worker.js
+├── styles/
+│   └── main.css
+├── js/
+│   ├── app.js           # 主應用入口
+│   ├── store.js         # 資料存儲
+│   ├── core-input.js    # 輸入框
+│   ├── timeline-view.js # 時間軸
+│   ├── tag-system.js    # 標籤系統
+│   ├── streak-tracker.js# 連續記錄
+│   ├── daily-summary.js # 每日摘要
+│   ├── statistics.js    # 統計圖表
+│   ├── export-feature.js# 匯出功能
+│   ├── onboarding.js    # 引導流程
+│   ├── search.js        # 搜尋功能
+│   ├── theme.js         # 主題切換
+│   ├── shortcuts.js     # 快捷鍵
+│   ├── edit-delete.js   # 編輯刪除
+│   └── utils.js         # 工具函數
+├── openspec/
+│   ├── specs/           # 功能規格
+│   └── changes/archive/ # 變更歷史
+└── docs/
+    └── THEME_CHECKLIST.md
+```
 
 ---
 
