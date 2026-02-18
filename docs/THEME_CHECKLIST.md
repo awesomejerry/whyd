@@ -26,13 +26,23 @@
 ## 檢查項目
 
 ### 1. CSS 檔案 (styles/)
-- [ ] `main.css` - 使用 var(--text), var(--bg), var(--surface)
-- [ ] `onboarding.css` - 使用 var(--text), var(--surface)
+- [x] `main.css` - 使用 var(--text), var(--bg), var(--surface)
+- [x] `onboarding.css` - 使用 var(--text), var(--surface)
+  - 注意: `color: white` 用於按鈕文字（在 --primary 背景上），這是正確的設計
 
 ### 2. Inline Styles (js/*.js)
-- [ ] `streak-tracker.js` - renderStyles() 使用 CSS 變數
+- [x] `streak-tracker.js` - renderStyles() 使用 CSS 變數
 
-### 3. 常見問題
+### 3. 動態標籤顏色（不需要修改）
+以下使用 `tag.color` 設置標籤顏色，這是正確的：
+- `js/core-input.js` - 選中的標籤顯示
+- `js/onboarding.js` - 引導中的標籤選擇
+- `js/tag-system.js` - 標籤系統
+- `js/timeline-view.js` - 時間軸上的標籤
+- `js/daily-summary.js` - 每日回顧的標籤分布
+- `js/statistics.js` - 統計的標籤圖表
+
+### 4. 常見問題
 
 #### 文字顏色
 **問題**: 硬編碼 `color: #fff` 或 `color: #000`
@@ -46,7 +56,7 @@
 **問題**: 硬編碼 `border-color: rgba(255,255,255,0.1)`
 **解決**: 使用 `border-color: var(--border)`
 
-### 4. 新增功能時
+### 5. 新增功能時
 
 1. **新增 CSS 樣式時**
    - 檢查是否使用 `var(--text)`, `var(--bg)`, `var(--surface)`
@@ -67,6 +77,21 @@
 | 2026-02-18 | `onboarding.css` | `.guided-tag-pill` 沒有文字顏色 | 加入 `color: var(--text)` |
 | 2026-02-18 | `streak-tracker.js` | inline styles 硬編碼深色 | 改用 CSS 變數 |
 
+## Review 完成狀態
+
+✅ **2026-02-18 Review 完成**
+
+### 檢查結果：
+- 所有 CSS 檔案：✅ 通過
+- 所有 JS inline styles：✅ 通過
+- 動態標籤顏色：✅ 正確使用 tag.color
+- 按鈕文字：✅ 白色在紫色背景上是正確設計
+
+### 不需修改的項目：
+1. `color: white` 在按鈕上（背景是 --primary 紫色）
+2. `color: #ffd700` 金色（最佳紀錄，深淺主題都可見）
+3. `tag.color` 動態標籤顏色（這是功能需求）
+
 ## 測試方法
 
 1. **切換主題**
@@ -74,11 +99,11 @@
    - 檢查所有文字是否可見
 
 2. **檢查特定區域**
-   - [ ] 標籤按鈕 (工作/生活/學習/健康)
-   - [ ] 連續天數區塊
-   - [ ] 統計圖表
-   - [ ] 每日回顧
-   - [ ] Onboarding 標籤
+   - [x] 標籤按鈕 (工作/生活/學習/健康)
+   - [x] 連續天數區塊
+   - [x] 統計圖表
+   - [x] 每日回顧
+   - [x] Onboarding 標籤
 
 3. **強制刷新**
    - `Ctrl + Shift + R` 清除快取
