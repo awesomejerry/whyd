@@ -18,10 +18,20 @@ const TagSystem = {
                 <span class="tags-title">標籤</span>
                 <button class="tag-filter-btn" id="clear-filter-btn">清除篩選</button>
             </div>
-            <div class="tags-sticky-bar">
-                <div class="tags-list" id="tags-list"></div>
-            </div>
         `;
+
+        // 在 sticky-input-area 裡面創建 tags-sticky-bar
+        const stickyArea = document.querySelector('.sticky-input-area');
+        if (stickyArea) {
+            let stickyBar = document.getElementById('tags-sticky-bar');
+            if (!stickyBar) {
+                stickyBar = document.createElement('div');
+                stickyBar.id = 'tags-sticky-bar';
+                stickyBar.className = 'tags-sticky-bar';
+                stickyArea.appendChild(stickyBar);
+            }
+            stickyBar.innerHTML = `<div class="tags-list" id="tags-list"></div>`;
+        }
 
         this.renderTags();
     },
@@ -56,10 +66,8 @@ const TagSystem = {
     },
 
     bindEvents() {
-        const container = document.getElementById('tags-section');
-        if (!container) return;
-
-        container.addEventListener('click', (e) => {
+        // 使用 document 級別的事件委派，因為標籤可能在不同容器
+        document.addEventListener('click', (e) => {
             const tagPill = e.target.closest('.tag-pill[data-tag-id]');
             if (tagPill) {
                 const tagId = tagPill.dataset.tagId;
@@ -91,7 +99,7 @@ const TagSystem = {
             clearBtn.addEventListener('click', () => this.clearSelection());
         }
 
-        container.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && e.target.id === 'tag-add-input') {
                 if (e.target.value.trim()) {
                     this.addCustomTag(e.target.value.trim());
