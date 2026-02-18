@@ -6,8 +6,8 @@
 
 **WHYD** (What Have You Done) 是一個逆向待辦清單應用，讓用戶記錄已完成的事項，而非待辦事項。
 
-- **Live URL:** https://awesomejerryshen.github.io/whyd/
-- **Repository:** https://github.com/awesomejerryshen/whyd
+- **Live URL:** https://awesomejerry.github.io/whyd/
+- **Repository:** https://github.com/awesomejerry/whyd
 - **當前版本:** v1.0.0
 
 ## 技術棧
@@ -165,7 +165,7 @@ python3 -m http.server 8080
 直接測試 GitHub Pages：
 
 ```
-https://awesomejerryshen.github.io/whyd/?v=<timestamp>
+https://awesomejerry.github.io/whyd/?v=<timestamp>
 ```
 
 使用 timestamp 參數強制刷新快取。
