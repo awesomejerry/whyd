@@ -6,6 +6,7 @@ const ExportFeature = {
         this.currentTab = 'export';
         this.renderModal();
         this.bindEvents();
+        window.addEventListener('languageChanged', () => this.renderModal());
     },
 
     renderModal() {
@@ -14,39 +15,39 @@ const ExportFeature = {
         this.modal.innerHTML = `
             <div class="modal-content export-modal-content">
                 <div class="modal-header">
-                    <h2>匯出/匯入</h2>
+                    <h2>${i18n.t('export.title')}</h2>
                     <button class="modal-close" data-action="close">&times;</button>
                 </div>
                 <div class="modal-tabs">
-                    <button class="modal-tab active" data-tab="export">匯出</button>
-                    <button class="modal-tab" data-tab="import">匯入</button>
+                    <button class="modal-tab active" data-tab="export">${i18n.t('export.tab')}</button>
+                    <button class="modal-tab" data-tab="import">${i18n.t('import.tab')}</button>
                 </div>
                 <div class="modal-body">
                     <div id="tab-export" class="tab-content active">
                         <div class="form-group">
-                            <label class="form-label">匯出格式</label>
+                            <label class="form-label">${i18n.t('export.format')}</label>
                             <div class="radio-group">
                                 <label class="radio-option">
                                     <input type="radio" name="export-format" value="json" checked>
-                                    <span class="radio-label">JSON</span>
-                                    <span class="radio-desc">完整資料結構</span>
+                                    <span class="radio-label">${i18n.t('export.json')}</span>
+                                    <span class="radio-desc">${i18n.t('export.jsonDesc')}</span>
                                 </label>
                                 <label class="radio-option">
                                     <input type="radio" name="export-format" value="csv">
-                                    <span class="radio-label">CSV</span>
-                                    <span class="radio-desc">試算表格式</span>
+                                    <span class="radio-label">${i18n.t('export.csv')}</span>
+                                    <span class="radio-desc">${i18n.t('export.csvDesc')}</span>
                                 </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">日期範圍（選填）</label>
+                            <label class="form-label">${i18n.t('export.dateRange')}</label>
                             <div class="date-range-inputs">
                                 <div class="date-input-wrapper">
-                                    <label for="export-start">起始日期</label>
+                                    <label for="export-start">${i18n.t('export.startDate')}</label>
                                     <input type="date" id="export-start" class="date-input">
                                 </div>
                                 <div class="date-input-wrapper">
-                                    <label for="export-end">結束日期</label>
+                                    <label for="export-end">${i18n.t('export.endDate')}</label>
                                     <input type="date" id="export-end" class="date-input">
                                 </div>
                             </div>
@@ -54,33 +55,33 @@ const ExportFeature = {
                     </div>
                     <div id="tab-import" class="tab-content">
                         <div class="form-group">
-                            <label class="form-label">選擇檔案</label>
+                            <label class="form-label">${i18n.t('import.selectFile')}</label>
                             <button class="btn btn-secondary btn-full" data-action="select-file">
-                                選擇 JSON 檔案
+                                ${i18n.t('import.selectFile')}
                             </button>
                         </div>
                         <div id="import-preview" class="import-preview hidden"></div>
                         <div id="import-actions" class="form-group hidden">
-                            <label class="form-label">匯入模式</label>
+                            <label class="form-label">${i18n.t('import.mode')}</label>
                             <div class="radio-group">
                                 <label class="radio-option">
                                     <input type="radio" name="import-mode" value="merge" checked>
-                                    <span class="radio-label">合併</span>
-                                    <span class="radio-desc">新增到現有資料</span>
+                                    <span class="radio-label">${i18n.t('import.merge')}</span>
+                                    <span class="radio-desc">${i18n.t('import.mergeDesc')}</span>
                                 </label>
                                 <label class="radio-option">
                                     <input type="radio" name="import-mode" value="replace">
-                                    <span class="radio-label">取代</span>
-                                    <span class="radio-desc">清除現有資料</span>
+                                    <span class="radio-label">${i18n.t('import.replace')}</span>
+                                    <span class="radio-desc">${i18n.t('import.replaceDesc')}</span>
                                 </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" data-action="close">取消</button>
-                    <button id="btn-export-action" class="btn btn-primary" data-action="export">匯出</button>
-                    <button id="btn-import-action" class="btn btn-primary hidden" data-action="import">匯入</button>
+                    <button class="btn btn-secondary" data-action="close">${i18n.t('export.cancel')}</button>
+                    <button id="btn-export-action" class="btn btn-primary" data-action="export">${i18n.t('export.action')}</button>
+                    <button id="btn-import-action" class="btn btn-primary hidden" data-action="import">${i18n.t('import.action')}</button>
                 </div>
                 <div class="export-notification hidden"></div>
                 <div class="import-notification hidden"></div>

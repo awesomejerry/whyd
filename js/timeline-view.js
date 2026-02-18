@@ -7,6 +7,7 @@ const TimelineView = {
     init() {
         this.render();
         this.bindEvents();
+        window.addEventListener('languageChanged', () => this.renderEntries());
     },
 
     render() {
@@ -72,11 +73,11 @@ const TimelineView = {
         const allTags = Store.getTags();
 
         if (entries.length === 0) {
-            let emptyMessage = '開始記錄你完成的事吧！';
+            let emptyMessage = i18n.t('timeline.empty');
             if (this.searchQuery) {
-                emptyMessage = '沒有符合搜尋條件的記錄';
+                emptyMessage = i18n.t('timeline.emptySearch');
             } else if (this.filterTags.length > 0) {
-                emptyMessage = '沒有符合條件的記錄';
+                emptyMessage = i18n.t('timeline.emptyFilter');
             }
             timeline.innerHTML = `
                 <div class="timeline-empty">
@@ -111,8 +112,8 @@ const TimelineView = {
                     <div class="timeline-marker"></div>
                     <div class="timeline-card">
                         <div class="timeline-actions">
-                            <button class="edit-btn" title="編輯">✏️</button>
-                            <button class="delete-btn" title="刪除">🗑️</button>
+                            <button class="edit-btn" title="${i18n.t('timeline.edit')}">✏️</button>
+                            <button class="delete-btn" title="${i18n.t('timeline.delete')}">🗑️</button>
                         </div>
                         <div class="timeline-time">${Utils.formatTime(entry.createdAt)}</div>
                         <div class="timeline-content">${this.escapeHtml(entry.text)}</div>
@@ -131,7 +132,7 @@ const TimelineView = {
                 <div class="timeline-marker"></div>
                 <div class="timeline-card timeline-card-editing">
                     <div class="edit-form">
-                        <textarea class="edit-text-input" placeholder="輸入內容...">${this.escapeHtml(entry.text)}</textarea>
+                        <textarea class="edit-text-input" placeholder="${i18n.t('timeline.editPlaceholder')}">${this.escapeHtml(entry.text)}</textarea>
                         <div class="edit-tags">
                             ${allTags.map(tag => `
                                 <span class="tag-pill tag-pill-edit ${currentTagIds.includes(tag.id) ? 'selected' : ''}" 
@@ -144,8 +145,8 @@ const TimelineView = {
                         </div>
                         <div class="edit-error hidden"></div>
                         <div class="edit-actions">
-                            <button class="btn btn-secondary edit-cancel-btn">取消</button>
-                            <button class="btn btn-primary edit-save-btn">儲存</button>
+                            <button class="btn btn-secondary edit-cancel-btn">${i18n.t('timeline.cancel')}</button>
+                            <button class="btn btn-primary edit-save-btn">${i18n.t('timeline.save')}</button>
                         </div>
                     </div>
                 </div>

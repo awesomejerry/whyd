@@ -1877,4 +1877,18 @@ body {
 .import-notification-error {
     background: var(--danger);
     color: white;
-}.hidden { display: none !important; }
+}
+
+.btn-lang {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-lang:hover {
+    background: var(--primary-light);
+    color: white;
+}
+
+.hidden { display: none !important; }

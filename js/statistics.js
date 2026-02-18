@@ -9,6 +9,7 @@ const Statistics = {
         this.render();
         this.bindEvents();
         window.addEventListener('resize', Utils.debounce(() => this.redrawCharts(), 200));
+        window.addEventListener('languageChanged', () => this.render());
     },
 
     render() {
@@ -18,26 +19,26 @@ const Statistics = {
         section.innerHTML = `
             <div class="stats-container">
                 <div class="stats-header">
-                    <h2>統計數據</h2>
+                    <h2>${i18n.t('stats.title')}</h2>
                     <div class="stats-toggle">
-                        <button class="toggle-btn active" data-view="week">週</button>
-                        <button class="toggle-btn" data-view="month">月</button>
+                        <button class="toggle-btn active" data-view="week">${i18n.t('stats.week')}</button>
+                        <button class="toggle-btn" data-view="month">${i18n.t('stats.month')}</button>
                     </div>
                 </div>
                 <div class="stats-charts">
                     <div class="chart-card">
-                        <h3>成就數量趨勢</h3>
+                        <h3>${i18n.t('stats.trendTitle')}</h3>
                         <canvas id="chart-line"></canvas>
                     </div>
                     <div class="chart-card">
-                        <h3>標籤分布</h3>
+                        <h3>${i18n.t('stats.tagDistTitle')}</h3>
                         <div class="pie-container">
                             <canvas id="chart-pie"></canvas>
                             <div id="pie-legend" class="pie-legend"></div>
                         </div>
                     </div>
                     <div class="chart-card">
-                        <h3>活躍時段</h3>
+                        <h3>${i18n.t('stats.activeTimeTitle')}</h3>
                         <canvas id="chart-bar"></canvas>
                     </div>
                 </div>
@@ -189,7 +190,7 @@ const Statistics = {
             ctx.fillStyle = '#94a3b8';
             ctx.font = '14px sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('尚無資料', width / 2, height / 2);
+            ctx.fillText(i18n.t('stats.noData'), width / 2, height / 2);
             return;
         }
 

@@ -4,10 +4,12 @@
 const WHYD_VERSION = 'v1.1.0';
 
 const App = {
-    init() {
+    async init() {
         console.log(`🚀 WHYD ${WHYD_VERSION} 初始化中...`);
 
-        // 檢查是否需要引導
+        await i18n.init();
+        this.updateHeaderText();
+
         if (typeof Onboarding !== 'undefined' && !Store.isOnboarded()) {
             Onboarding.start();
         }
@@ -28,10 +30,13 @@ const App = {
         // 綁定底部按鈕
         this.bindFooterButtons();
 
-        // 監聽資料匯入事件
         window.addEventListener('dataImported', () => {
             if (typeof TimelineView !== 'undefined') TimelineView.render();
             if (typeof StreakTracker !== 'undefined') Store.updateStreak();
+        });
+
+        window.addEventListener('languageChanged', () => {
+            this.refreshAllUI();
         });
 
         // 更新連續天數
@@ -78,22 +83,18 @@ const App = {
 
         const isHidden = section.classList.contains('hidden');
 
-        // 隱藏其他 section
         document.querySelectorAll('.section.hidden-by-toggle')
             .forEach(s => s.classList.add('hidden'));
 
-        // 切換目標 section
         if (isHidden) {
             section.classList.remove('hidden');
             section.classList.add('hidden-by-toggle');
             section.scrollIntoView({ behavior: 'smooth' });
 
-            // 重新繪製圖表（確保 canvas 尺寸正確）
             if (sectionId === 'stats-section' && typeof Statistics !== 'undefined') {
                 setTimeout(() => Statistics.redrawCharts(), 100);
             }
 
-            // 重新渲染每日回顧
             if (sectionId === 'summary-section' && typeof DailySummary !== 'undefined') {
                 setTimeout(() => DailySummary.render(), 100);
             }
@@ -102,10 +103,30 @@ const App = {
             section.classList.remove('hidden-by-toggle');
         }
 
-        // 更新按鈕狀態
         document.querySelectorAll('.btn-icon').forEach(b => b.classList.remove('active'));
         if (isHidden) {
             button.classList.add('active');
+        }
+    },
+
+    updateHeaderText() {
+        const title = document.getElementById('app-title');
+        const tagline = document.getElementById('app-tagline');
+        if (title) title.textContent = i18n.t('app.title');
+        if (tagline) tagline.textContent = i18n.t('app.tagline');
+    },
+
+    refreshAllUI() {
+        this.updateHeaderText();
+        if (typeof CoreInput !== 'undefined') CoreInput.render();
+        if (typeof TagSystem !== 'undefined') TagSystem.render();
+        if (typeof TimelineView !== 'undefined') TimelineView.render();
+        if (typeof StreakTracker !== 'undefined') StreakTracker.init();
+        if (typeof Statistics !== 'undefined') Statistics.render();
+        if (typeof DailySummary !== 'undefined') DailySummary.render();
+        if (typeof ExportFeature !== 'undefined') ExportFeature.renderModal();
+        if (typeof Onboarding !== 'undefined' && !Store.isOnboarded()) {
+            Onboarding.render();
         }
     }
 };

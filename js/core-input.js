@@ -6,6 +6,12 @@ const CoreInput = {
         this.createDOM();
         this.attachEventListeners();
         this.autoFocus();
+        window.addEventListener('languageChanged', () => this.render());
+    },
+
+    render() {
+        this.createDOM();
+        this.updateSelectedTagsDisplay();
     },
 
     createDOM() {
@@ -18,8 +24,8 @@ const CoreInput = {
                     type="text" 
                     class="entry-input" 
                     id="entry-input" 
-                    placeholder="你完成了什麼？"
-                    aria-label="輸入完成的事項"
+                    placeholder="${i18n.t('input.placeholder')}"
+                    aria-label="${i18n.t('input.ariaLabel')}"
                     autocomplete="off"
                     maxlength="500"
                 >
@@ -27,7 +33,7 @@ const CoreInput = {
                     type="button" 
                     class="submit-btn" 
                     id="submit-btn"
-                    aria-label="提交"
+                    aria-label="${i18n.t('input.submit')}"
                     disabled
                 >
                     <svg class="submit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

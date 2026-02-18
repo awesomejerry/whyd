@@ -6,7 +6,6 @@ class StreakTracker {
         this.data = this.loadStreakData();
     }
 
-    // 靜態 init 方法，供 app.js 呼叫
     static init() {
         const instance = new StreakTracker();
         const container = document.getElementById('streak-section');
@@ -15,9 +14,14 @@ class StreakTracker {
             container.innerHTML = instance.renderStyles() + instance.render();
         }
         
-        // 監聽新增 entry 事件
         window.addEventListener('entryAdded', () => {
             instance.recordActivity();
+            if (container) {
+                container.innerHTML = instance.renderStyles() + instance.render();
+            }
+        });
+
+        window.addEventListener('languageChanged', () => {
             if (container) {
                 container.innerHTML = instance.renderStyles() + instance.render();
             }
@@ -117,11 +121,11 @@ class StreakTracker {
     }
 
     getFlameTier(streak) {
-        if (streak < 1) return { icon: '', label: '尚未開始', class: 'no-streak' };
-        if (streak <= 3) return { icon: '💫', label: '新手起步', class: 'sparkle' };
-        if (streak <= 6) return { icon: '🔥', label: '漸入佳境', class: 'flame-1' };
-        if (streak < 30) return { icon: '🔥🔥', label: '火力全開', class: 'flame-2' };
-        return { icon: '🔥🔥🔥', label: '烈焰傳奇', class: 'flame-3' };
+        if (streak < 1) return { icon: '', label: i18n.t('streak.noStreak'), class: 'no-streak' };
+        if (streak <= 3) return { icon: '💫', label: i18n.t('streak.sparkle'), class: 'sparkle' };
+        if (streak <= 6) return { icon: '🔥', label: i18n.t('streak.flame1'), class: 'flame-1' };
+        if (streak < 30) return { icon: '🔥🔥', label: i18n.t('streak.flame2'), class: 'flame-2' };
+        return { icon: '🔥🔥🔥', label: i18n.t('streak.flame3'), class: 'flame-3' };
     }
 
     getStreakData() {
@@ -141,12 +145,12 @@ class StreakTracker {
                 <div class="streak-current">
                     <span class="streak-icon ${tier.class}">${tier.icon}</span>
                     <span class="streak-count">${streakData.current}</span>
-                    <span class="streak-label">天連續</span>
+                    <span class="streak-label">${i18n.t('streak.days')}</span>
                 </div>
                 <div class="streak-best">
-                    <span class="streak-best-label">最佳紀錄</span>
+                    <span class="streak-best-label">${i18n.t('streak.bestRecord')}</span>
                     <span class="streak-best-count">${streakData.best}</span>
-                    <span class="streak-best-unit">天</span>
+                    <span class="streak-best-unit">${i18n.t('streak.day')}</span>
                 </div>
             </div>
         `;

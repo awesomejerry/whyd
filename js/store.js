@@ -28,7 +28,8 @@ const Store = {
             tags: [],
             settings: {
                 onboarded: false,
-                theme: 'light'
+                theme: 'light',
+                language: 'zh-TW'
             },
             streak: {
                 current: 0,
@@ -180,6 +181,17 @@ const Store = {
         const deletedEntry = data.entries.splice(entryIndex, 1)[0];
         this.saveData(data);
         return deletedEntry;
+    },
+
+    getLanguage() {
+        const data = this.getData();
+        return data.settings.language || 'zh-TW';
+    },
+
+    setLanguage(lang) {
+        const data = this.getData();
+        data.settings.language = lang;
+        this.saveData(data);
     }
 };
 

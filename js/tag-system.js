@@ -7,6 +7,7 @@ const TagSystem = {
     init() {
         this.render();
         this.bindEvents();
+        window.addEventListener('languageChanged', () => this.render());
     },
 
     render() {
@@ -16,8 +17,8 @@ const TagSystem = {
         container.innerHTML = `
             <div class="tags-container">
                 <div class="tags-header">
-                    <span class="tags-title">標籤</span>
-                    <button class="tag-filter-btn" id="clear-filter-btn">清除篩選</button>
+                    <span class="tags-title">${i18n.t('tags.title')}</span>
+                    <button class="tag-filter-btn" id="clear-filter-btn">${i18n.t('tags.clearFilter')}</button>
                 </div>
                 <div class="tags-list" id="tags-list"></div>
             </div>
@@ -36,12 +37,13 @@ const TagSystem = {
         let html = tags.map(tag => {
             const isSelected = this.selectedTags.has(tag.id);
             const isFaded = selectedIds.length > 0 && !isSelected;
+            const displayName = this.getTagName(tag);
             return `
                 <button class="tag-pill ${isSelected ? 'selected' : ''} ${isFaded ? 'faded' : ''}"
                         data-tag-id="${tag.id}"
                         style="--tag-color: ${tag.color}">
                     <span class="tag-dot" style="background: ${tag.color}"></span>
-                    <span class="tag-name">${tag.name}</span>
+                    <span class="tag-name">${displayName}</span>
                 </button>
             `;
         }).join('');
@@ -53,6 +55,19 @@ const TagSystem = {
         `;
 
         listEl.innerHTML = html;
+    },
+
+    getTagName(tag) {
+        const defaultTagKeys = {
+            'work': 'tags.work',
+            'life': 'tags.life',
+            'learn': 'tags.learn',
+            'health': 'tags.health'
+        };
+        if (defaultTagKeys[tag.id] && tag.isDefault) {
+            return i18n.t(defaultTagKeys[tag.id]);
+        }
+        return tag.name;
     },
 
     bindEvents() {
@@ -145,7 +160,7 @@ const TagSystem = {
         addBtn.outerHTML = `
             <div class="tag-add-input-wrapper" id="tag-add-wrapper">
                 <input type="text" class="tag-add-input" id="tag-add-input" 
-                       placeholder="標籤名稱" maxlength="10" autofocus>
+                       placeholder="${i18n.t('tags.tagName')}" maxlength="10" autofocus>
                 <button class="tag-add-confirm" id="tag-add-confirm">✓</button>
                 <button class="tag-add-cancel" id="tag-add-cancel">✕</button>
             </div>

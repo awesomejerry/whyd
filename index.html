@@ -21,8 +21,8 @@
 </head>
 <body>
     <header class="app-header">
-        <h1>WHYD</h1>
-        <p class="tagline">What Have You Done</p>
+        <h1 id="app-title">WHYD</h1>
+        <p class="tagline" id="app-tagline">What Have You Done</p>
     </header>
 
     <main class="app-main">
@@ -118,6 +118,7 @@
             <button id="btn-summary" class="btn-icon" title="每日回顧">📋</button>
         </div>
         <div class="footer-actions footer-secondary">
+            <button id="btn-language" class="btn-icon btn-small btn-lang" title="切換語言 / Switch Language">中</button>
             <button id="btn-theme" class="btn-icon btn-small" title="切換主題">☀️</button>
             <button id="btn-export" class="btn-icon btn-small" title="匯出/匯入">📁</button>
         </div>
@@ -126,6 +127,7 @@
     <!-- App State & Utilities (loaded first) -->
     <script src="js/store.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/i18n.js"></script>
     <script src="js/theme.js"></script>
 
     <!-- Feature Modules (loaded in order) -->
