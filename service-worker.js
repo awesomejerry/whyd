@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v10';
+const CACHE_VERSION = 'v11';
 const CACHE_NAME = `whyd-cache-${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [

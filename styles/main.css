@@ -54,6 +54,9 @@ body {
     padding: 2rem 1rem 1rem;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 200;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -91,7 +94,7 @@ body {
 /* Sticky Input Area */
 .sticky-input-area {
     position: sticky;
-    top: 0;
+    top: 5.5rem;
     z-index: 100;
     background: var(--bg);
     padding: 0.5rem 0;
