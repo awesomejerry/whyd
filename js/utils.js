@@ -8,13 +8,16 @@ const Utils = {
         const diffMs = now - date;
         const diffMins = Math.floor(diffMs / 60000);
         const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
 
-        if (diffMins < 1) return '剛剛';
-        if (diffMins < 60) return `${diffMins} 分鐘前`;
-        if (diffHours < 24) return `${diffHours} 小時前`;
+        if (diffMins < 1) return i18n.t('timeline.justNow');
+        if (diffMins < 60) return i18n.t('timeline.minutesAgo', { n: diffMins });
+        if (diffHours < 24) return i18n.t('timeline.hoursAgo', { n: diffHours });
+        if (diffDays < 7) return i18n.t('timeline.daysAgo', { n: diffDays });
 
         // 顯示具體時間
-        return date.toLocaleTimeString('zh-TW', {
+        const locale = i18n.getLanguage() === 'zh-TW' ? 'zh-TW' : 'en-US';
+        return date.toLocaleTimeString(locale, {
             hour: '2-digit',
             minute: '2-digit'
         });
@@ -23,7 +26,8 @@ const Utils = {
     // 格式化日期
     formatDate(isoString) {
         const date = new Date(isoString);
-        return date.toLocaleDateString('zh-TW', {
+        const locale = i18n.getLanguage() === 'zh-TW' ? 'zh-TW' : 'en-US';
+        return date.toLocaleDateString(locale, {
             month: 'short',
             day: 'numeric',
             weekday: 'short'

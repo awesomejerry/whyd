@@ -28,10 +28,18 @@ const i18n = {
         }
     },
     
-    t(key) {
+    t(key, params = {}) {
         const translation = this.translations[this.currentLanguage];
         if (!translation) return key;
-        return translation[key] || key;
+        
+        let text = translation[key] || key;
+        
+        // 替換參數 {param}
+        Object.keys(params).forEach(param => {
+            text = text.replace(new RegExp(`\\{${param}\\}`, 'g'), params[param]);
+        });
+        
+        return text;
     },
     
     setLanguage(lang) {
