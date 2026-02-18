@@ -527,6 +527,7 @@ body {
     border-radius: 9999px;
     border: 2px solid transparent;
     background: var(--bg);
+    color: var(--text);
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
