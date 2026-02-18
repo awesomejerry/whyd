@@ -45,6 +45,7 @@ whyd/
 │   ├── daily-summary.js    # 每日摘要
 │   ├── statistics.js       # 統計圖表
 │   ├── export-feature.js   # 匯出功能
+│   ├── import-feature.js   # 匯入功能
 │   ├── onboarding.js       # 引導流程
 │   └── shortcuts.js        # 快捷鍵
 │
