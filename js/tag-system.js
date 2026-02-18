@@ -14,11 +14,11 @@ const TagSystem = {
         if (!container) return;
 
         container.innerHTML = `
-            <div class="tags-container">
-                <div class="tags-header">
-                    <span class="tags-title">標籤</span>
-                    <button class="tag-filter-btn" id="clear-filter-btn">清除篩選</button>
-                </div>
+            <div class="tags-header">
+                <span class="tags-title">標籤</span>
+                <button class="tag-filter-btn" id="clear-filter-btn">清除篩選</button>
+            </div>
+            <div class="tags-sticky-bar">
                 <div class="tags-list" id="tags-list"></div>
             </div>
         `;

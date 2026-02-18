@@ -93,17 +93,44 @@ body {
 
 /* Sticky Input Area */
 .sticky-input-area {
-    position: relative;
-}
-
-#tags-section {
     position: sticky;
-    top: 6.5rem;
-    z-index: 100;
+    top: 5.5rem;
+    z-index: 150;
+    background: var(--bg);
+    padding: 0.5rem 0 0 0;
+    margin: -0.5rem 0 0.5rem 0;
 }
 
-#tags-section .tags-container {
+/* Tag System */
+.tags-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0 0.25rem;
+}
+
+.tags-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.tags-sticky-bar {
+    position: sticky;
+    top: 10rem;
+    z-index: 100;
     background: var(--surface);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.tags-sticky-bar .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .tags-sticky {
