@@ -3,6 +3,7 @@
 const ExportFeature = {
     init() {
         this.modal = document.getElementById('export-modal');
+        this.currentTab = 'export';
         this.renderModal();
         this.bindEvents();
     },
@@ -13,44 +14,76 @@ const ExportFeature = {
         this.modal.innerHTML = `
             <div class="modal-content export-modal-content">
                 <div class="modal-header">
-                    <h2>匯出資料</h2>
+                    <h2>匯出/匯入</h2>
                     <button class="modal-close" data-action="close">&times;</button>
                 </div>
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="export">匯出</button>
+                    <button class="modal-tab" data-tab="import">匯入</button>
+                </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="form-label">匯出格式</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="export-format" value="json" checked>
-                                <span class="radio-label">JSON</span>
-                                <span class="radio-desc">完整資料結構</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="export-format" value="csv">
-                                <span class="radio-label">CSV</span>
-                                <span class="radio-desc">試算表格式</span>
-                            </label>
+                    <div id="tab-export" class="tab-content active">
+                        <div class="form-group">
+                            <label class="form-label">匯出格式</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="export-format" value="json" checked>
+                                    <span class="radio-label">JSON</span>
+                                    <span class="radio-desc">完整資料結構</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="export-format" value="csv">
+                                    <span class="radio-label">CSV</span>
+                                    <span class="radio-desc">試算表格式</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">日期範圍（選填）</label>
+                            <div class="date-range-inputs">
+                                <div class="date-input-wrapper">
+                                    <label for="export-start">起始日期</label>
+                                    <input type="date" id="export-start" class="date-input">
+                                </div>
+                                <div class="date-input-wrapper">
+                                    <label for="export-end">結束日期</label>
+                                    <input type="date" id="export-end" class="date-input">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">日期範圍（選填）</label>
-                        <div class="date-range-inputs">
-                            <div class="date-input-wrapper">
-                                <label for="export-start">起始日期</label>
-                                <input type="date" id="export-start" class="date-input">
-                            </div>
-                            <div class="date-input-wrapper">
-                                <label for="export-end">結束日期</label>
-                                <input type="date" id="export-end" class="date-input">
+                    <div id="tab-import" class="tab-content">
+                        <div class="form-group">
+                            <label class="form-label">選擇檔案</label>
+                            <button class="btn btn-secondary btn-full" data-action="select-file">
+                                選擇 JSON 檔案
+                            </button>
+                        </div>
+                        <div id="import-preview" class="import-preview hidden"></div>
+                        <div id="import-actions" class="form-group hidden">
+                            <label class="form-label">匯入模式</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="import-mode" value="merge" checked>
+                                    <span class="radio-label">合併</span>
+                                    <span class="radio-desc">新增到現有資料</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="import-mode" value="replace">
+                                    <span class="radio-label">取代</span>
+                                    <span class="radio-desc">清除現有資料</span>
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-action="close">取消</button>
-                    <button class="btn btn-primary" data-action="export">匯出</button>
+                    <button id="btn-export-action" class="btn btn-primary" data-action="export">匯出</button>
+                    <button id="btn-import-action" class="btn btn-primary hidden" data-action="import">匯入</button>
                 </div>
                 <div class="export-notification hidden"></div>
+                <div class="import-notification hidden"></div>
             </div>
         `;
     },
@@ -63,12 +96,38 @@ const ExportFeature = {
             if (action === 'close') this.hide();
             if (action === 'export') this.handleExport();
             if (e.target === this.modal) this.hide();
+
+            if (e.target.classList.contains('modal-tab')) {
+                this.switchTab(e.target.dataset.tab);
+            }
         });
+    },
+
+    switchTab(tab) {
+        this.currentTab = tab;
+        
+        this.modal.querySelectorAll('.modal-tab').forEach(t => {
+            t.classList.toggle('active', t.dataset.tab === tab);
+        });
+        
+        this.modal.querySelectorAll('.tab-content').forEach(c => {
+            c.classList.toggle('active', c.id === `tab-${tab}`);
+        });
+
+        const exportBtn = this.modal.querySelector('#btn-export-action');
+        const importBtn = this.modal.querySelector('#btn-import-action');
+        if (exportBtn) exportBtn.classList.toggle('hidden', tab !== 'export');
+        if (importBtn) importBtn.classList.toggle('hidden', tab !== 'import');
+
+        if (tab === 'import' && typeof ImportFeature !== 'undefined') {
+            ImportFeature.resetForm();
+        }
     },
 
     show() {
         if (this.modal) {
             this.modal.classList.remove('hidden');
+            this.switchTab('export');
         }
     },
 
@@ -76,6 +135,9 @@ const ExportFeature = {
         if (this.modal) {
             this.modal.classList.add('hidden');
             this.resetForm();
+            if (typeof ImportFeature !== 'undefined') {
+                ImportFeature.resetForm();
+            }
         }
     },
 

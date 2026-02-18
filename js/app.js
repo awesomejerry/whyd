@@ -1,7 +1,7 @@
 // App.js - WHYD 應用程式入口
 // 負責初始化所有模組和協調功能
 
-const WHYD_VERSION = 'v1.0.1';
+const WHYD_VERSION = 'v1.1.0';
 
 const App = {
     init() {
@@ -22,10 +22,17 @@ const App = {
         if (typeof Statistics !== 'undefined') Statistics.init();
         if (typeof DailySummary !== 'undefined') DailySummary.init();
         if (typeof ExportFeature !== 'undefined') ExportFeature.init();
+        if (typeof ImportFeature !== 'undefined') ImportFeature.init();
         if (typeof Shortcuts !== 'undefined') Shortcuts.init();
 
         // 綁定底部按鈕
         this.bindFooterButtons();
+
+        // 監聽資料匯入事件
+        window.addEventListener('dataImported', () => {
+            if (typeof TimelineView !== 'undefined') TimelineView.render();
+            if (typeof StreakTracker !== 'undefined') Store.updateStreak();
+        });
 
         // 更新連續天數
         Store.updateStreak();

@@ -1772,3 +1772,109 @@ body {
         font-size: 0.8rem;
     }
 }
+
+/* Modal Tabs */
+.modal-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-tab {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.modal-tab:hover {
+    color: var(--text);
+}
+
+.modal-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Import Feature */
+.btn-full {
+    width: 100%;
+    justify-content: center;
+}
+
+.import-preview {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.import-preview.hidden {
+    display: none;
+}
+
+.import-preview-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.import-preview-icon {
+    font-size: 1.5rem;
+}
+
+.import-preview-text {
+    color: var(--text);
+    font-size: 0.9375rem;
+}
+
+.import-preview-text strong {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+#import-actions.hidden {
+    display: none;
+}
+
+.import-notification {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    animation: slideUp 0.2s ease;
+    white-space: nowrap;
+}
+
+.import-notification.hidden {
+    display: none;
+}
+
+.import-notification-success {
+    background: var(--success);
+    color: white;
+}
+
+.import-notification-error {
+    background: var(--danger);
+    color: white;
+}
