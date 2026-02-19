@@ -1,6 +1,7 @@
 # export-feature Specification
 
 ## Purpose
+Data portability feature allowing users to export their entries in JSON or CSV format with optional date range filtering. Enables backup and external analysis of achievement data.
 TBD - created by archiving change export-feature. Update Purpose after archive.
 ## Requirements
 ### Requirement: Export Modal UI

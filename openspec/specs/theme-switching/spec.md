@@ -1,6 +1,7 @@
 # theme-switching Specification
 
 ## Purpose
+User preference feature supporting dark (default) and light themes with system preference detection. All UI elements use CSS custom properties for seamless theme transitions.
 TBD - created by archiving change add-theme-switching. Update Purpose after archive.
 ## Requirements
 ### Requirement: Theme initialization

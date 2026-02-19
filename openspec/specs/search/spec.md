@@ -1,6 +1,7 @@
 # search Specification
 
 ## Purpose
+Real-time search functionality that filters entries by text content with instant results. Supports partial matching and case-insensitive search across all entry text.
 TBD - created by archiving change add-search-feature. Update Purpose after archive.
 ## Requirements
 ### Requirement: Search input displays above timeline

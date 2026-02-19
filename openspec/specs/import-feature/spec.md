@@ -1,4 +1,9 @@
-## ADDED Requirements
+# import-feature Specification
+
+## Purpose
+Enables users to import previously exported WHYD data from JSON files, supporting both merge (add to existing) and replace (overwrite) modes. Allows data recovery and migration between devices.
+
+## Requirements
 
 ### Requirement: User can select file for import
 The system SHALL allow users to select a JSON file from their device using a file picker.
@@ -79,15 +84,13 @@ The system SHALL handle errors during import process.
 #### Scenario: Import fails during processing
 - **WHEN** an unexpected error occurs during import
 - **THEN** system displays error message "匯入失敗，請重試"
-- **AND** existing data remains unchanged
+- **AND** system logs error to console for debugging
+- **AND** user's existing data remains unchanged
 
-### Requirement: Import modal UI follows theme guidelines
-The system SHALL use CSS variables for all colors in the import modal.
+### Requirement: Import shares modal with export
+The system SHALL provide import and export in the same modal with tab navigation.
 
-#### Scenario: Import modal in light theme
-- **WHEN** import modal is displayed in light theme
-- **THEN** all colors use CSS variables (--text, --surface, --border, etc.)
-
-#### Scenario: Import modal in dark theme
-- **WHEN** import modal is displayed in dark theme
-- **THEN** all colors adapt automatically via CSS variables
+#### Scenario: Tabs switch between export and import
+- **WHEN** user opens export/import modal
+- **THEN** system shows tabs for "匯出" and "匯入"
+- **AND** clicking tabs switches between export and import views

@@ -1,6 +1,7 @@
 # statistics Specification
 
 ## Purpose
+Data visualization module using Canvas API to render charts (line, pie, bar) showing achievement trends over week/month periods, tag distribution, and activity patterns.
 TBD - created by archiving change statistics. Update Purpose after archive.
 ## Requirements
 ### Requirement: Statistics module initialization

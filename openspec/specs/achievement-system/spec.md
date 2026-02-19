@@ -1,4 +1,9 @@
-## ADDED Requirements
+# achievement-system Specification
+
+## Purpose
+Gamification system that rewards users with unlockable achievements for consistent usage, milestone completion, and feature exploration. Increases user engagement and motivation by celebrating accomplishments.
+
+## Requirements
 
 ### Requirement: Achievement definitions
 The system SHALL define 14 achievements across 4 categories: streak (4), count (4), usage (5), time (2).
@@ -97,39 +102,39 @@ The system SHALL provide an achievement gallery modal showing all achievements w
 #### Scenario: Gallery shows all achievements
 - **WHEN** user clicks the achievement button (🏆) in footer
 - **THEN** a modal SHALL open displaying all 14 achievements
+- **AND** each achievement SHALL show icon, name, description, and unlock status
+- **AND** achievements SHALL be filterable by category
 
-#### Scenario: Unlocked achievements show completion
-- **WHEN** viewing the achievement gallery
-- **THEN** unlocked achievements SHALL display with full opacity and checkmark
-- **AND** the unlock date SHALL be shown
+#### Scenario: Locked achievement shows progress
+- **WHEN** viewing a locked achievement with trackable progress
+- **THEN** system SHALL display progress bar (e.g., "5/7 days")
+- **AND** progress bar SHALL fill proportionally
 
-#### Scenario: Locked achievements show progress
-- **WHEN** viewing the achievement gallery
-- **THEN** locked achievements SHALL display with reduced opacity
-- **AND** progress indicator SHALL show current/required value (e.g., "5/7 days")
+#### Scenario: Unlocked achievement shows timestamp
+- **WHEN** viewing an unlocked achievement
+- **THEN** system SHALL display unlock date and time
+- **AND** system SHALL show "Unlocked" badge
 
 ### Requirement: Achievement i18n support
-The system SHALL support zh-TW and en translations for all achievement names, descriptions, and UI text.
+All achievement names and descriptions SHALL support internationalization.
 
-#### Scenario: Achievement names in Chinese
-- **WHEN** app language is zh-TW
-- **THEN** achievement names SHALL display in Chinese (e.g., "火焰起飛")
-- **AND** achievement descriptions SHALL display in Chinese
+#### Scenario: Chinese translations
+- **WHEN** user language is zh-TW
+- **THEN** all achievement names and descriptions SHALL display in Traditional Chinese
 
-#### Scenario: Achievement names in English
-- **WHEN** app language is en
-- **THEN** achievement names SHALL display in English (e.g., "Fire Starter")
-- **AND** achievement descriptions SHALL display in English
+#### Scenario: English translations
+- **WHEN** user language is en
+- **THEN** all achievement names and descriptions SHALL display in English
 
-### Requirement: Achievement theme support
-The system SHALL render achievements correctly in both light and dark themes using CSS variables.
+### Requirement: Achievement system performance
+Achievement checking SHALL NOT significantly impact app performance.
 
-#### Scenario: Achievement cards in dark theme
-- **WHEN** app is in dark theme (default)
-- **THEN** achievement cards SHALL use --surface background and --text color
-- **AND** text SHALL be readable with proper contrast
+#### Scenario: Efficient achievement checking
+- **WHEN** an action triggers achievement check
+- **THEN** only relevant achievements SHALL be checked (category-based filtering)
+- **AND** check SHALL complete within 10ms
 
-#### Scenario: Achievement cards in light theme
-- **WHEN** app is in light theme
-- **THEN** achievement cards SHALL adapt to light theme colors
-- **AND** text SHALL be readable with proper contrast
+#### Scenario: No duplicate notifications
+- **WHEN** an already-unlocked achievement condition is met again
+- **THEN** no notification SHALL be displayed
+- **AND** no duplicate unlock SHALL be recorded

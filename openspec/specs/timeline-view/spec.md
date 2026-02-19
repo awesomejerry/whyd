@@ -1,6 +1,7 @@
 # timeline-view Specification
 
 ## Purpose
+Chronological display of all user entries organized by date. Shows entries in reverse chronological order with relative timestamps (e.g., "2 hours ago"), visual hierarchy, and infinite scroll capability.
 TBD - created by archiving change edit-delete. Update Purpose after archive.
 ## Requirements
 ### Requirement: Timeline items show edit button

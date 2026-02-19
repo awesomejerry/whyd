@@ -1,6 +1,7 @@
 # entry-editing Specification
 
 ## Purpose
+Allows users to modify text content of existing entries through an inline edit mode. Preserves original timestamp and tags while updating the entry text.
 TBD - created by archiving change edit-delete. Update Purpose after archive.
 ## Requirements
 ### Requirement: User can enter edit mode

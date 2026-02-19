@@ -1,6 +1,7 @@
 # keyboard-shortcuts Specification
 
 ## Purpose
+Productivity enhancement providing keyboard shortcuts for common actions: Ctrl+N (new entry), Ctrl+/ (search), Ctrl+E (export), Ctrl+S (stats), Escape (close modals). Improves power user efficiency.
 提供全域鍵盤快捷鍵支援，讓使用者能快速執行常見操作，提升工作效率。
 
 ## Requirements

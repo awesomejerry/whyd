@@ -1,6 +1,7 @@
 # tag-management Specification
 
 ## Purpose
+Flexible categorization system using tags (Work, Life, Learn, Health, and custom). Supports tag creation, color assignment, and filtering entries by tag selection.
 TBD - created by archiving change tag-system. Update Purpose after archive.
 ## Requirements
 ### Requirement: System provides default tags

@@ -1,6 +1,7 @@
 # entry-deletion Specification
 
 ## Purpose
+Provides ability to remove unwanted entries with confirmation dialog. Permanently deletes entry data and updates statistics accordingly.
 TBD - created by archiving change edit-delete. Update Purpose after archive.
 ## Requirements
 ### Requirement: User can delete entry

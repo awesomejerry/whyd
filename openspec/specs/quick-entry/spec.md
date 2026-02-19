@@ -1,7 +1,8 @@
 # quick-entry Specification
 
 ## Purpose
-TBD - created by archiving change core-input. Update Purpose after archive.
+Primary input mechanism that allows users to quickly record completed achievements. Features an always-visible input box with keyboard shortcuts (Enter) and button submission, providing instant visual feedback on successful entry.
+
 ## Requirements
 ### Requirement: Input box is always visible
 The system SHALL display a permanent input box at the top of the main interface that is always visible to the user.

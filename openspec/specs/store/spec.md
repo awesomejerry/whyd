@@ -1,7 +1,8 @@
 # store Specification
 
 ## Purpose
-TBD - created by archiving change statistics. Update Purpose after archive.
+Core data persistence layer that manages all application state including entries, tags, streak data, user settings, and achievements. Provides a centralized API for data access and modification with localStorage as the backing store.
+
 ## Requirements
 ### Requirement: Get entries by date range
 The Store module SHALL provide a method to retrieve entries within a specified date range.

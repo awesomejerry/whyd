@@ -1,6 +1,7 @@
 # streak-tracker Specification
 
 ## Purpose
+Gamification element that tracks consecutive days of usage. Displays current streak and best streak, encouraging daily engagement through visual progress indicators.
 TBD - created by archiving change streak-tracker. Update Purpose after archive.
 ## Requirements
 ### Requirement: Streak calculation

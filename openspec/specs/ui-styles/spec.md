@@ -1,6 +1,7 @@
 # ui-styles Specification
 
 ## Purpose
+Design system defining CSS custom properties, component styles, layout rules, and responsive breakpoints. Ensures consistent visual language across all UI components.
 TBD - created by archiving change add-theme-switching. Update Purpose after archive.
 ## Requirements
 ### Requirement: Dark theme CSS variables

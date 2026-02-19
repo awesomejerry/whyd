@@ -1,6 +1,7 @@
 # onboarding-flow Specification
 
 ## Purpose
+Guided introduction for new users explaining WHYD's reverse-todo concept through 3 steps: welcome message, feature overview, and first-entry tutorial. Reduces initial friction and increases engagement.
 TBD - created by archiving change onboarding. Update Purpose after archive.
 ## Requirements
 ### Requirement: Onboarding Modal Display
