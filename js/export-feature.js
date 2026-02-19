@@ -177,6 +177,10 @@ const ExportFeature = {
                 this.exportCSV(entries);
             }
             this.showNotification('匯出成功！', 'success');
+            window.dispatchEvent(new CustomEvent('dataExported', {
+                detail: { format, count: entries.length },
+                bubbles: true
+            }));
             setTimeout(() => this.hide(), 1500);
         } catch (error) {
             console.error('Export failed:', error);

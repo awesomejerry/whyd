@@ -48,6 +48,11 @@ Store.getEntriesByDateRange(from, to)  // 取得日期範圍記錄
 Store.getTags()                    // 取得所有標籤
 Store.addTag(tag)                  // 新增標籤
 Store.updateStreak()               // 更新連續天數
+Store.getAchievements()            // 取得成就資料
+Store.saveAchievements(achievements) // 儲存成就資料
+Store.unlockAchievement(id)        // 解鎖成就
+Store.isAchievementUnlocked(id)    // 檢查成就是否已解鎖
+Store.updateUsageStat(stat, value) // 更新使用統計
 ```
 
 ### Utils
@@ -129,6 +134,12 @@ window.addEventListener('eventName', (e) => {
 |--------|--------|------|
 | `entryAdded` | CoreInput | `{ entry }` |
 | `tag-selected` | TagSystem | `{ selectedIds }` |
+| `streakUpdated` | Store | `{ streak }` |
+| `statsViewed` | App | - |
+| `themeChanged` | theme.js | `{ theme }` |
+| `languageChanged` | i18n | `{ language }` |
+| `dataExported` | ExportFeature | `{ format, count }` |
+| `achievementUnlocked` | AchievementSystem | `{ achievement }` |
 
 ---
 
@@ -146,22 +157,11 @@ window.addEventListener('eventName', (e) => {
 | DailySummary | `js/daily-summary.js` | 每日回顧 |
 | Statistics | `js/statistics.js` | 統計圖表 |
 | ExportFeature | `js/export-feature.js` | 匯出功能 |
-
----
-
-## 錯誤處理
-
-```javascript
-// 統一錯誤格式
-{
-  error: true,
-  code: "ERROR_CODE",
-  message: "描述"
-}
-```
+| AchievementSystem | `js/achievement-system.js` | 成就系統 |
 
 ---
 
 ## 更新日誌
 
+- 2026-02-19: 新增 AchievementSystem 成就系統模組
 - 2026-02-17: 初始版本（Phase 2 並行開發前）

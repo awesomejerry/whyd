@@ -41,6 +41,10 @@
         setStoredTheme(next);
         applyTheme(next);
         updateToggleButton(next);
+        window.dispatchEvent(new CustomEvent('themeChanged', {
+            detail: { theme: next },
+            bubbles: true
+        }));
     }
 
     function updateToggleButton(theme) {

@@ -136,6 +136,12 @@ const Store = {
         data.streak.best = Math.max(data.streak.best, data.streak.current);
         data.streak.lastDate = today;
         this.saveData(data);
+
+        window.dispatchEvent(new CustomEvent('streakUpdated', {
+            detail: { streak: data.streak },
+            bubbles: true
+        }));
+
         return data.streak;
     },
 
@@ -192,6 +198,67 @@ const Store = {
         const data = this.getData();
         data.settings.language = lang;
         this.saveData(data);
+    },
+
+    getDefaultAchievements() {
+        return {
+            unlockedIds: [],
+            unlockedAt: {},
+            usageStats: {
+                statsViewed: 0,
+                themeChanged: false,
+                languageChanged: false,
+                exported: false,
+                tagsUsed: []
+            }
+        };
+    },
+
+    getAchievements() {
+        const data = this.getData();
+        if (!data.achievements) {
+            data.achievements = this.getDefaultAchievements();
+            this.saveData(data);
+        }
+        return data.achievements;
+    },
+
+    saveAchievements(achievements) {
+        const data = this.getData();
+        data.achievements = achievements;
+        this.saveData(data);
+    },
+
+    unlockAchievement(achievementId) {
+        const achievements = this.getAchievements();
+        if (achievements.unlockedIds.includes(achievementId)) return false;
+        achievements.unlockedIds.push(achievementId);
+        achievements.unlockedAt[achievementId] = new Date().toISOString();
+        this.saveAchievements(achievements);
+        return true;
+    },
+
+    isAchievementUnlocked(achievementId) {
+        const achievements = this.getAchievements();
+        return achievements.unlockedIds.includes(achievementId);
+    },
+
+    updateUsageStat(stat, value = null) {
+        const achievements = this.getAchievements();
+        if (stat === 'statsViewed') {
+            achievements.usageStats.statsViewed++;
+        } else if (stat === 'themeChanged') {
+            achievements.usageStats.themeChanged = true;
+        } else if (stat === 'languageChanged') {
+            achievements.usageStats.languageChanged = true;
+        } else if (stat === 'exported') {
+            achievements.usageStats.exported = true;
+        } else if (stat === 'tagUsed' && value) {
+            if (!achievements.usageStats.tagsUsed.includes(value)) {
+                achievements.usageStats.tagsUsed.push(value);
+            }
+        }
+        this.saveAchievements(achievements);
     }
 };
 

@@ -1,7 +1,7 @@
 // App.js - WHYD 應用程式入口
 // 負責初始化所有模組和協調功能
 
-const WHYD_VERSION = 'v1.2.1';
+const WHYD_VERSION = 'v1.3.0';
 
 const App = {
     async init() {
@@ -26,6 +26,7 @@ const App = {
         if (typeof ExportFeature !== 'undefined') ExportFeature.init();
         if (typeof ImportFeature !== 'undefined') ImportFeature.init();
         if (typeof Shortcuts !== 'undefined') Shortcuts.init();
+        if (typeof AchievementSystem !== 'undefined') AchievementSystem.init();
 
         // 綁定底部按鈕
         this.bindFooterButtons();
@@ -55,6 +56,7 @@ const App = {
         const btnExport = document.getElementById('btn-export');
         const btnStats = document.getElementById('btn-stats');
         const btnSummary = document.getElementById('btn-summary');
+        const btnAchievements = document.getElementById('btn-achievements');
 
         if (btnExport) {
             btnExport.addEventListener('click', () => {
@@ -75,6 +77,14 @@ const App = {
                 this.toggleSection('summary-section', btnSummary);
             });
         }
+
+        if (btnAchievements) {
+            btnAchievements.addEventListener('click', () => {
+                if (typeof AchievementSystem !== 'undefined') {
+                    AchievementSystem.showModal();
+                }
+            });
+        }
     },
 
     toggleSection(sectionId, button) {
@@ -93,6 +103,7 @@ const App = {
 
             if (sectionId === 'stats-section' && typeof Statistics !== 'undefined') {
                 setTimeout(() => Statistics.redrawCharts(), 100);
+                window.dispatchEvent(new CustomEvent('statsViewed', { bubbles: true }));
             }
 
             if (sectionId === 'summary-section' && typeof DailySummary !== 'undefined') {
