@@ -8,7 +8,7 @@
 
 - **Live URL:** https://awesomejerry.github.io/whyd/
 - **Repository:** https://github.com/awesomejerry/whyd
-- **當前版本:** v1.2.1
+- **當前版本:** v1.3.0
 
 ## 技術棧
 
