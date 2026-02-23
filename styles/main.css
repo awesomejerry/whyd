@@ -1892,6 +1892,15 @@ body {
     color: white;
 }
 
+.btn-sponsor {
+    transition: transform 0.2s ease;
+}
+
+.btn-sponsor:hover {
+    transform: scale(1.15);
+    background: transparent;
+}
+
 .hidden { display: none !important; }
 
 .achievement-modal-content {

@@ -1,7 +1,7 @@
 // App.js - WHYD 應用程式入口
 // 負責初始化所有模組和協調功能
 
-const WHYD_VERSION = 'v1.3.0';
+const WHYD_VERSION = 'v1.3.1';
 
 const App = {
     async init() {
@@ -83,6 +83,13 @@ const App = {
                 if (typeof AchievementSystem !== 'undefined') {
                     AchievementSystem.showModal();
                 }
+            });
+        }
+
+        const btnSponsor = document.getElementById('btn-sponsor');
+        if (btnSponsor) {
+            btnSponsor.addEventListener('click', () => {
+                window.open('https://github.com/sponsors/awesomejerry', '_blank');
             });
         }
     },
